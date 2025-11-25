@@ -9,7 +9,7 @@ import json
 
 
 
-# ---------------- HOME PAGE ----------------
+
 def index(request):
 
     if request.method == "POST":
@@ -85,7 +85,7 @@ def resume(request):
     return render(request, "core/resume.html")
 
 
-# ---------------- CHATBOT API ----------------
+
 @csrf_exempt
 def chat_api(request):
     if request.method != "POST":
@@ -100,32 +100,32 @@ def chat_api(request):
     # ------------- PREDEFINED INTENTS ------------- #
 
     responses = {
-        # Greetings
+       
         ("hi", "hello", "hey", "namaste", "yo"): 
             "Hey! I'm YashBot 👋 — how can I help you?",
 
-        # About
+        
         ("who are you", "about you", "who is yash", "tell me about yash"):
             "I'm YashBot 🤖 — a mini assistant built by Yash. He's an AI/ML developer passionate about coding and building cool projects.",
 
-        # Skills
+        
         ("skills", "tech stack", "what can yash do"):
             "Yash works with Python, Java, C, Django, Node.js, MongoDB, FastAPI, Bootstrap, EJS, CSS, HTML, ML basics and more.",
 
-        # Projects
+        
         ("projects", "show projects", "yash projects"):
             "Yash has built several projects:\n• AI Voice Assistant (Chanakya)\n• Wanderlust marketplace\n• Arka chatbot\n• MathSuite\n• QR tool & Pocket Calculator",
 
-        # Resume
+        
         ("resume", "cv", "download resume"):
             "You can check out Yash’s resume here: /resume/ 😊",
 
-        # Contact
+       
         ("contact", "email", "reach", "connect"):
             "You can contact Yash at: yashawasthi854@gmail.com ✉️",
     }
 
-    # ------------- MATCH INTENTS ------------- #
+    
     for keywords, reply in responses.items():
         if any(k in msg for k in keywords):
             return JsonResponse({"reply": reply})

@@ -2,7 +2,6 @@ function openChat() {
     const chatBox = document.getElementById("chatbotBox");
     chatBox.classList.add("open");
 
-    // Optional: focus input when chat opens
     const input = document.getElementById("chatInput");
     setTimeout(() => input.focus(), 200);
 }
@@ -16,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("chatInput");
     const suggestions = document.querySelectorAll(".suggestion");
 
-    // Open chat when clicking predefined buttons
+   
     suggestions.forEach(btn => {
         btn.addEventListener("click", () => {
             chatBox.classList.add("open");
@@ -24,12 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Close chat
     closeBtn.addEventListener("click", () => {
         chatBox.classList.remove("open");
     });
 
-    // Send message manually
+    
     input.addEventListener("keydown", (e) => {
         if (e.key === "Enter" && input.value.trim() !== "") {
             sendUserMessage(input.value.trim());

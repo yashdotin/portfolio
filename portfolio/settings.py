@@ -111,10 +111,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-# ---------------------------------------------------------
-# STATIC FILES (Railway + WhiteNoise)
-# ---------------------------------------------------------
-
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -126,18 +122,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
-# ---------------------------------------------------------
-# DEFAULT PRIMARY KEY FIELD TYPE
-# ---------------------------------------------------------
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# ---------------------------------------------------------
-# EMAIL (GMail App Password)
-# ---------------------------------------------------------
-
-# ---------------- EMAIL (SENDGRID SMTP) ----------------
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
@@ -145,10 +132,10 @@ EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-# SendGrid username is ALWAYS this:
+
 EMAIL_HOST_USER = "apikey"
 
-# Load your key from Render environment
+
 EMAIL_HOST_PASSWORD = os.environ.get("SENDGRID_API_KEY")
 
 DEFAULT_FROM_EMAIL = "yashawasthi854@gmail.com"   

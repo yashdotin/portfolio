@@ -91,7 +91,7 @@
 
 
 
-<!-- =============== CHATBOT =============== -->
+<!-- ---------------- CHATBOT BOX ---------------- -->
 <div id="chatbotBox" class="chatbot-box">
 
     <div class="chat-header">
@@ -115,7 +115,7 @@
 <!-- CHATBOT SCRIPT -->
 <script src="{% static 'core/js/chatbot.js' %}"></script>
 
-<!-- ================== FIXED THEME TOGGLE SCRIPT ================== -->
+<!-- ---------------- THEME TOGGLE SCRIPT ---------------- -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById("themeToggle");
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("theme", newTheme);
     });
 
-    // Load saved theme
+    
     const saved = localStorage.getItem("theme");
     if (saved) {
         html.dataset.theme = saved;
