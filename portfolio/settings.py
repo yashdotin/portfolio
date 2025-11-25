@@ -13,7 +13,8 @@ SECRET_KEY = 'django-insecure-7($n!%ev8njmxh*7(qg0&qpnr!)r!jzce&2$c5q^zjor-=gz-!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 # Railway sets a dynamic URL so allow everything
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*", "your-render-url.onrender.com"]
+
 
 
 # ---------------------------------------------------------
