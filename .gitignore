@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+.venv/
+.Python
+pyenv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Django
+*.sqlite3
+/staticfiles/
+media/
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

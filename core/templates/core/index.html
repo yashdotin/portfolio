@@ -1,0 +1,239 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ---------------- HERO ---------------- -->
+<section class="hero container">
+  <div class="hero-left">
+    <div class="badge">{{ title_badge_html|safe }}</div>
+    <h2>I'm {{ name }}, a developer & AI/ML enthusiast</h2>
+    <p class="lead">{{ about_paragraph }}</p>
+  </div>
+</section>
+
+<!-- ---------------- PROJECTS ---------------- -->
+<section id="projects" class="container">
+    <h2>Projects</h2>
+
+    <div class="projects-grid">
+        {% for p in projects %}
+        <div class="project-card" onclick="openProject('{{ forloop.counter0 }}')">
+            <img src="{{ p.cover }}" class="project-cover">
+            <h3>{{ p.title }}</h3>
+            <p>{{ p.desc }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ---------------- SKILLS ---------------- -->
+<section class="container skills">
+  <h3>Skills</h3>
+  <div class="badges">
+    <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white">
+    <img src="https://img.shields.io/badge/Java-ED8B00?style=flat&logo=java&logoColor=white">
+    <img src="https://img.shields.io/badge/C-00599C?style=flat&logo=c&logoColor=white">
+
+    <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white">
+    <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white">
+    <img src="https://img.shields.io/badge/EJS-8A2BE2?style=flat&logo=ejs&logoColor=white" alt="EJS">
+
+
+    <img src="https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white">
+    <img src="https://img.shields.io/badge/Express.js-000000?style=flat&logo=express&logoColor=white">
+    <img src="https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white">
+    <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white">
+
+    <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white">
+    <img src="https://img.shields.io/badge/Render-46E3B7?style=flat&logo=render&logoColor=white">
+    <img src="https://img.shields.io/badge/VS%20Code-007ACC?style=flat&logo=visualstudiocode&logoColor=white">
+    <img src="https://img.shields.io/badge/Django-092E20?style=flat&logo=django&logoColor=white" alt="Django">
+
+<!-- Bootstrap -->
+    <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat&logo=bootstrap&logoColor=white" alt="Bootstrap">
+</div>
+
+</section>
+
+<!-- ---------------- ABOUT + CONTACT ---------------- -->
+<section id="about" class="container about-section">
+  <div class="about-grid">
+
+    <!-- PHOTOS -->
+    <div class="about-left">
+      <div class="photo-card">
+        <div class="photo-stage" id="photoStage">
+          <img src="{% static 'core/images/about/1.jpg' %}" class="photo active" data-index="0">
+          <img src="{% static 'core/images/about/2.jpg' %}" class="photo" data-index="1">
+          <img src="{% static 'core/images/about/3.jpg' %}" class="photo" data-index="2">
+          <img src="{% static 'core/images/about/4.jpg' %}" class="photo" data-index="3">
+        </div>
+
+        <div class="photo-controls">
+          <button class="pc-btn" id="prevBtn">◀</button>
+          <div class="dots" id="dots">
+            <button class="dot active" data-index="0"></button>
+            <button class="dot" data-index="1"></button>
+            <button class="dot" data-index="2"></button>
+            <button class="dot" data-index="3"></button>
+          </div>
+          <button class="pc-btn" id="nextBtn">▶</button>
+        </div>
+        <button class="view-all" id="viewAllBtn">View all photos</button>
+      </div>
+    </div>
+
+    <!-- BIO + CONTACT -->
+    <div class="about-right">
+      <div class="bio-card card">
+        <h3>About Me</h3>
+        <p class="bio-text">
+          I'm Yash — a B.Tech student in Computer Science (AI & ML).
+          I love programming (C, Java, Python), building web apps, and creating practical AI/ML projects.
+        </p>
+        <h4>Quick Stats</h4>
+        <ul class="bio-list">
+          <li>AI / ML enthusiast</li>
+          <li>Web dev (Django, Node)</li>
+          <li>Problem solving & algorithms</li>
+        </ul>
+      </div>
+
+      <section id="contact">
+        <div class="contact-card card" id="contactCard">
+          <h3>Connect with me</h3>
+
+          {% if messages %}
+            <div class="messages">
+              {% for message in messages %}
+                <div class="msg {{ message.tags }}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <form method="post" action="#contact" id="contactForm" novalidate>
+            {% csrf_token %}
+            <label><input type="text" name="name" placeholder="Your name" required></label>
+            <label><input type="email" name="email" placeholder="Your email" required></label>
+            <label><textarea name="message" placeholder="Your message" rows="5" required></textarea></label>
+            <input type="hidden" name="subject" value="Portfolio contact form">
+            <button class="btn" type="submit">Send message</button>
+          </form>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+
+<!-- ---------------- LIGHTBOX FOR PHOTOS ---------------- -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lbClose">✕</button>
+    <img id="lbImg" src="">
+    <button class="lightbox-nav lb-prev" id="lbPrev">◀</button>
+    <button class="lightbox-nav lb-next" id="lbNext">▶</button>
+  </div>
+</div>
+
+<!-- ---------------- PROJECT MODAL ---------------- -->
+<div id="projectModal" class="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeProject()">✕</button>
+    <div id="modalData"></div>
+  </div>
+</div>
+
+
+<!-- ---------------- JS ---------------- -->
+<script>
+/* PHOTO SLIDER */
+(function(){
+  const photos = [...document.querySelectorAll('#photoStage .photo')];
+  const dots   = [...document.querySelectorAll('#dots .dot')];
+  const prev   = document.getElementById('prevBtn');
+  const next   = document.getElementById('nextBtn');
+  const viewAll = document.getElementById('viewAllBtn');
+
+  let idx = 0;
+
+  function show(n){
+    photos.forEach(p=>p.classList.remove('active'));
+    dots.forEach(d=>d.classList.remove('active'));
+    photos[n].classList.add('active');
+    dots[n].classList.add('active');
+    idx = n;
+  }
+
+  next.addEventListener("click",()=>show((idx+1)%photos.length));
+  prev.addEventListener("click",()=>show((idx-1+photos.length)%photos.length));
+  dots.forEach(d=>d.addEventListener("click",e=>show(+e.target.dataset.index)));
+
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbClose = document.getElementById('lbClose');
+  const lbPrev = document.getElementById('lbPrev');
+  const lbNext = document.getElementById('lbNext');
+  let current = 0;
+
+  function openLightbox(i){
+    current = i;
+    lbImg.src = photos[i].src;
+    lb.classList.add("open");
+  }
+  function closeLightbox(){ lb.classList.remove("open"); }
+
+  viewAll.addEventListener("click",()=>openLightbox(idx));
+  lbClose.addEventListener("click",closeLightbox);
+  lbPrev.addEventListener("click",()=>openLightbox((current-1+photos.length)%photos.length));
+  lbNext.addEventListener("click",()=>openLightbox((current+1)%photos.length));
+
+  photos.forEach(p=>p.addEventListener("click",e=>openLightbox(+e.target.dataset.index)));
+})();
+</script>
+
+<script>
+/* -------- PROJECT MODAL -------- */
+const PROJECTS = {{ projects|safe }};
+
+function openProject(i){
+    const p = PROJECTS[i];
+    const html = `
+        <img src="${p.cover}" class="project-detail-cover">
+        <h2>${p.title}</h2>
+        <p>${p.desc}</p>
+        <a href="${p.link}" class="btn" target="_blank">Live Demo</a>
+    `;
+    document.getElementById("modalData").innerHTML = html;
+    document.getElementById("projectModal").classList.add("open");
+}
+
+function closeProject(){
+    document.getElementById("projectModal").classList.remove("open");
+}
+</script>
+<!-- ---------------- ASSISTANT & QUICK CONTACT ---------------- -->
+<!-- ---------------- ASSISTANT & QUICK CONTACT ---------------- -->
+<section class="container assist-section">
+    <h2 style="margin-bottom:1rem;">Assistant & Quick Contact</h2>
+
+    <div class="assist-grid">
+
+        <div class="assist-card">
+            <h3>YashBot AI Assistant</h3>
+            <p>Ask me anything about my skills, projects, resume — I'm here to help.</p>
+            <button class="btn" onclick="openChat()">Open Chatbot</button>
+        </div>
+
+        <a href="https://t.me/Yash_awasthi_10" target="_blank" class="telegram-btn">
+            <img src="{% static 'core/images/icons/telegram.svg' %}">
+        </a>
+
+    </div>
+</section>
+
+
+
+{% endblock %}

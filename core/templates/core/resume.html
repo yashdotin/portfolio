@@ -1,0 +1,104 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="container" style="padding: 2rem 1rem;">
+
+    <h2 style="margin-bottom: 1rem;">Resume</h2>
+
+    <!-- DOWNLOAD BUTTON -->
+    <a href="{% static 'core/resume/resume.pdf' %}" 
+       download 
+       class="btn"
+       style="margin-bottom: 1.5rem; display:inline-block;">
+       Download Resume (PDF)
+    </a>
+
+    <!-- RESUME WRAPPER -->
+    <div class="card" style="padding: 1.5rem; margin-top: 1rem;">
+
+        <!-- HEADER -->
+        <h2 style="margin-bottom: .3rem;">Yash Awasthi</h2>
+        <p class="lead">AI/ML • Full-Stack Developer</p>
+
+        <p style="margin-top:.5rem;">
+            📞 8090163198 • ✉️ yashawasthi854@gmail.com <br>
+            🔗 LinkedIn: <a href="https://www.linkedin.com/in/yash-awasthi-a7aa5b334" target="_blank">linkedin.com/in/yash-awasthi-a7aa5b334</a> <br>
+            💻 GitHub: <a href="https://github.com/Yashdotin" target="_blank">github.com/Yashdotin</a>
+        </p>
+
+        <hr style="margin: 1.4rem 0; border-color: var(--border);">
+
+        <!-- Education -->
+        <h3>Education</h3>
+        <ul>
+            <li><strong>B.Tech – CSE (AI & ML)</strong>, BBDITM Lucknow (2023–2027)</li>
+            <li><strong>Senior Secondary – PCM</strong>, Bal Nikunj Inter College (2021–2023)</li>
+        </ul>
+
+        <hr style="margin: 1.4rem 0; border-color: var(--border);">
+
+        <!-- Experience -->
+        <h3>Experience</h3>
+
+        <p><strong>Developer — Arka (Jan 2025 – Present)</strong></p>
+        <ul>
+            <li>Built and deployed AI-driven chatbot using LLaMA/NeMoTrons APIs.</li>
+            <li>Developed with Node.js, Express, MongoDB + prompt engineering.</li>
+            <li>Implemented chat history, optimized frontend performance.</li>
+        </ul>
+
+        <p><strong>Web Developer — Freelance Projects (Sep 2024 – Present)</strong></p>
+        <ul>
+            <li>Developed WanderLust (Airbnb-inspired full-stack website).</li>
+            <li>Built prototypes with FastAPI, Node.js, and JWT authentication.</li>
+        </ul>
+
+        <hr style="margin: 1.4rem 0; border-color: var(--border);">
+
+        <!-- Projects -->
+        <h3>Key Projects</h3>
+        <ul>
+            <li><strong>Chanakya Voice Assistant</strong> — Python, pyttsx3, SpeechRecognition</li>
+            <li><strong>WanderLust</strong> — Node.js, Express, MongoDB</li>
+            <li><strong>Arka</strong> — Full-stack AI chatbot, LLM APIs</li>
+            <li><strong>Tier-1 Robotics Workshop</strong> — Wireless robo-car (Arduino)</li>
+        </ul>
+
+        <hr style="margin: 1.4rem 0; border-color: var(--border);">
+
+        <!-- Skills -->
+        <h3>Technical Skills</h3>
+        <ul>
+            <li><strong>Languages:</strong> Python, Java, C</li>
+            <li><strong>Web:</strong> HTML, CSS, JavaScript, Node.js, Express, FastAPI, MongoDB, Django, EJS, Bootstrap</li>
+            <li><strong>Tools:</strong> Git, GitHub, VS Code</li>
+        </ul>
+
+        <hr style="margin: 1.4rem 0; border-color: var(--border);">
+
+        <!-- Achievements -->
+        <h3>Achievements</h3>
+        <ul>
+            <li>Completed Tier-1 Robotics Workshop</li>
+            <li>70+ DSA problems solved</li>
+            <li>Built and deployed multiple AI-driven applications</li>
+        </ul>
+
+        <hr style="margin: 1.4rem 0; border-color: var(--border);">
+
+        <!-- Interests -->
+        <h3>Interests</h3>
+        <ul>
+            <li>Web Development</li>
+            <li>AI/ML & NLP</li>
+            <li>Robotics</li>
+            <li>Generative AI research</li>
+        </ul>
+
+    </div>
+
+</section>
+
+{% endblock %}

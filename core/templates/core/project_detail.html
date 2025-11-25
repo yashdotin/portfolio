@@ -1,0 +1,19 @@
+{% load static %}
+
+<div class="container project-detail">
+
+  <img src="{% static project.cover %}" class="project-detail-cover">
+
+  <h1>{{ project.title }}</h1>
+
+  <p class="project-long">{{ project.long }}</p>
+
+  <h4>Tech Used</h4>
+  <div class="stack-badges">
+    {% for tech in project.stack %}
+      <span class="stack">{{ tech }}</span>
+    {% endfor %}
+  </div>
+
+  <a class="btn" href="{{ project.link }}" target="_blank">Visit Project</a>
+</div>

@@ -1,0 +1,144 @@
+{% load static %}
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/png" href="{% static 'core/images/avatar.png' %}">
+  <title>{{ name }}</title>
+  <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+
+<body>
+
+<header class="glass-nav">
+  <div class="container header-inner">
+
+    <div class="nav-left">
+      <a href="#" class="nav-home">
+        <img src="{% static 'core/images/avatar.png' %}" class="nav-avatar">
+      </a>
+
+      <nav class="nav-links">
+    <a href="{% url 'home' %}">{{ name }}</a>
+    <a href="{% url 'home' %}#about">About</a>
+    <a href="{% url 'resume' %}">Resume</a>
+    <a href="{% url 'home' %}#projects">Projects</a>
+    <a href="{% url 'home' %}#contact">Contact</a>
+</nav>
+    </div>
+
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+
+  </div>
+</header>
+
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+
+<footer class="site-footer glass-footer">
+  <div class="container footer-grid">
+
+    <div class="footer-col">
+      <img src="{% static 'core/images/avatar.png' %}" class="footer-avatar">
+      <h4>{{ name }}</h4>
+      <p class="footer-tag">AI/ML • Developer • Builder</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Connect</h4>
+
+      <a class="footer-social insta" href="https://www.instagram.com/yash.awasthi.10/" target="_blank">
+        <img src="{% static 'core/images/icons/instagram.svg' %}" class="footer-icon"> Instagram
+      </a>
+
+      <a class="footer-social linkedin" href="{{ socials.linkedin }}" target="_blank">
+        <img src="{% static 'core/images/icons/linkedin.svg' %}" class="footer-icon"> LinkedIn
+      </a>
+
+      <a class="footer-social github" href="{{ socials.github }}" target="_blank">
+        <img src="{% static 'core/images/icons/github.svg' %}" class="footer-icon"> GitHub
+      </a>
+
+      <a class="footer-social twitter" href="https://x.com/Yashjs10" target="_blank">
+        <img src="{% static 'core/images/icons/x.svg' %}" class="footer-icon"> Twitter
+      </a>
+
+      <a class="footer-social email" href="{{ socials.email }}">
+        <img src="{% static 'core/images/icons/email.svg' %}" class="footer-icon"> Email
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>Made with ❤️ by {{ name }} • © {{ now.year }}</p>
+  </div>
+</footer>
+
+
+
+
+<!-- =============== CHATBOT =============== -->
+<div id="chatbotBox" class="chatbot-box">
+
+    <div class="chat-header">
+        <span>YashBot</span>
+        <button id="closeChat">✖</button>
+    </div>
+
+    <div id="chatMessages" class="chat-messages"></div>
+
+    <div id="chatSuggestions" class="chat-suggestions">
+        <button class="suggestion">Tell me about Yash</button>
+        <button class="suggestion">Show projects</button>
+        <button class="suggestion">What skills do you have?</button>
+        <button class="suggestion">How to contact Yash?</button>
+    </div>
+
+    <input id="chatInput" placeholder="Ask me anything..." autocomplete="off">
+
+</div>
+
+<!-- CHATBOT SCRIPT -->
+<script src="{% static 'core/js/chatbot.js' %}"></script>
+
+<!-- ================== FIXED THEME TOGGLE SCRIPT ================== -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("themeToggle");
+    const html = document.documentElement;
+
+    // Toggle theme
+    toggle.addEventListener("click", () => {
+        const newTheme = html.dataset.theme === "light" ? "dark" : "light";
+        html.dataset.theme = newTheme;
+
+        toggle.textContent = newTheme === "light" ? "🌙" : "☀️";
+
+        localStorage.setItem("theme", newTheme);
+    });
+
+    // Load saved theme
+    const saved = localStorage.getItem("theme");
+    if (saved) {
+        html.dataset.theme = saved;
+        toggle.textContent = saved === "light" ? "🌙" : "☀️";
+    }
+});
+</script>
+
+</body>
+</html>
