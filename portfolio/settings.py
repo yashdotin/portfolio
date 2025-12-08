@@ -9,12 +9,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-7($n!%ev8njmxh*7(qg0&qpnr!)r!jzce&2$c5q^zjor-=gz-!'
 
-# Automatic DEBUG switch for Railway
+# Automatic DEBUG switch for Railway/Render
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-# Railway sets a dynamic URL so allow everything
-ALLOWED_HOSTS = ["*", "your-render-url.onrender.com"]
+# Allowed hosts for production
+ALLOWED_HOSTS = [
+    "yashs.online",
+    "www.yashs.online",
+    "portfolio-prrv.onrender.com",
+]
 
+# CSRF trusted origins for HTTPS + custom domain
+CSRF_TRUSTED_ORIGINS = [
+    "https://yashs.online",
+    "https://www.yashs.online",
+]
 
 
 # ---------------------------------------------------------
@@ -40,7 +49,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 
-    # WhiteNoise for Railway
+    # WhiteNoise for Railway/Render
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -111,6 +120,10 @@ USE_I18N = True
 USE_TZ = True
 
 
+# ---------------------------------------------------------
+# STATIC FILES
+# ---------------------------------------------------------
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -122,9 +135,16 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
+# ---------------------------------------------------------
+# DEFAULTS
+# ---------------------------------------------------------
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# ---------------------------------------------------------
+# EMAIL (SendGrid)
+# ---------------------------------------------------------
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
@@ -132,10 +152,8 @@ EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-
 EMAIL_HOST_USER = "apikey"
-
 
 EMAIL_HOST_PASSWORD = os.environ.get("SENDGRID_API_KEY")
 
-DEFAULT_FROM_EMAIL = "yashawasthi854@gmail.com"   
+DEFAULT_FROM_EMAIL = "yashawasthi854@gmail.com"
