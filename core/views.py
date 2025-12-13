@@ -82,7 +82,10 @@ My workflow is simple: build → break → fix → improve
 
 # ---------------- RESUME PAGE ----------------
 def resume(request):
-    return render(request, "core/resume.html")
+    context = {
+        "name": "Yash"
+    }
+    return render(request, "core/resume.html",context)
 
 
 
