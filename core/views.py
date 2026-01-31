@@ -67,7 +67,7 @@ My workflow is simple: build → break → fix → improve
                 "desc":"ML model to predict heart disease risk.",
                 "link":"https://heartrisk-pred.onrender.com/",
                 "cover":"/static/core/images/heart.jpeg"
-            }
+            },
             {"title": "AI Voice Assistant (Chanakya)", "desc": "Python NLP assistant.",
              "link": "https://www.linkedin.com/posts/yash-awasthi-a7aa5b334_ai-voiceassistant-nvidia-activity-7319263848144801792-2OTd", "cover": "/static/core/images/1.jpg"},
             {"title": "Wanderlust", "desc": "Node.js + MongoDB Airbnb clone.",
